@@ -1,0 +1,20 @@
+{
+  "name": "knights-tour",
+  "version": "1.0.0",
+  "description": "A simple knights tour game",
+  "main": "tour.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Benjamin Ahola",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}

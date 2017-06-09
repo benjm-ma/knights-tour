@@ -20,3 +20,11 @@ class Board extends React.Component {
   }
 
 }
+
+/*
+ * 1. Player clicks square
+ * 2. Validate if the attempted move is legal 
+ * 	if the move is legal:
+ * 		t) render the knight there
+ * 		f) do nothing
+ */

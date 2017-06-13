@@ -1,57 +1,42 @@
-
-/** generateBoard
- * generates a board based off of a given size
- * @param size: 
- * @return board
+/** board.js
+ *
+ *
  */
+
 var square= require('./square.js'),
 
-  board= {
-
-    //
-    spaces: [[]],
-    /**
-     *
-     */
-    setSpaces: function setSpaces( array ){
-      this.spaces= array;
-      return this;
-    },
-    
-
-  },
-
-  generateBoard= function generateBoard( size ){
+  /** generateBoard
+   * Generates an multi-dimensional array representing a board 
+   * based off of a given size.
+   * @param {number} size - The dimensions of the board
+   * @return {object} column - Multi-dimensional array represening
+   * 	a board.
+   */
+  generate= function generateBoard( size ){
     var size= size || 6,
-      board= [],
+      column= [],
+      row= [],
       asciiVal= 97; //lowercase letters prefered
 
+    // Populate columns with rows
     for( let col= 0; col< size; col++ ){
       for( let row= 0; row< size; i++ ){
-	board[col].push(
-	  [row]= square.generateSquare({
+	row.push(
+	 square.generateSquare({
 	    iCoord: { col: col, row: row },
 	    coord: { 
-	      col: asciiVal+ col, 
+	      col: String.fromCharCode( asciiVal+ col ), 
 	      row: row 
 	    } 
-	  }); 
+	  }) 
 	);
+	column.push(row);
       }
+      row= []; // Reset row
     }
 
-    return board;
+    return column;
    },
-
-  /** unvisitedSquares
-   * Instance dependant
-   */
-  unvisitedSquares= function unvisitedSquares( board ){
-    
-  }
-
-
-
 
   board_api= {
     generateBoard: generateBoard

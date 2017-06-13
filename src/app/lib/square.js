@@ -19,21 +19,21 @@ var _= require('lodash/core'),
     },
     
     // Numerical coord system as seen by the system
-    iCoord: {
+    iCoord: iCoord || {
       col: 0,
       row: 0
     },
     /** setICoord
      * 
-     * @param col - Parent Array Index
-     * @param row - Child Array Index
+     * @param {number} col - Parent Array Index
+     * @param {number} row - Child Array Index
      * @return this
      */
     setICoord: function setICoord( col, row ){
       this.iCoord= {
 	col: col,
 	row: row
-      }
+      };
       return this;
     },
     /** getICoord
@@ -44,30 +44,19 @@ var _= require('lodash/core'),
       return this.iCoord;
     },
 
-    // Human readable coord system
-    coord: {
-      col: '',
-      row: 0
-    },
-    /** setCoord
-     * Sets the human readable coord system
-     * @param col - Letter value of column
-     * @param row - Number value of Row
-     * @return this
-     */
-    setCoord: function setCoord( col, row ){
-      this.coord= {
-	col: col,
-	row: row
-      };
-      return this;
-    },
     /** getCoord
-     *
-     * @return this.Coord
+     * Returns the letter-number pair of this square's
+     * position on the board.
+     * @param {number} asciiVal - The first ascii value representation 
+     * 	of the letter range being used (either a-z or A-Z).
+     * @return {object} this.Coord - 
      */
-    getCoord: function getICoord(){
-      return this.Coord;
+    getCoord: function getICoord( asciiVal ){
+      return { 
+	col: String.fromCharCode( asciiVal+ this.iCoord.col ),
+	row: this.iCoord.row+ 1
+
+      };
     },
 
   },
@@ -81,6 +70,6 @@ var _= require('lodash/core'),
 
   square_api= {
     generateSquare: generateSquare
-  },
+  };
 
-  module.exports= square_api;
+module.exports= square_api;

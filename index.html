@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Knight's Tour</title>
+  <link rel='stylesheet' type='text/css' href='css/style.css'></link>
+  <link href='http://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="js/tour.js"></script>
+  <script type="text/javascript">
+	var chessBoard= new Board( 5, 5 ); //Max 26x26 here at the moment... if 5x5 was too easy...
+	blocksLeft= (chessBoard.getHeightInBlocks()* chessBoard.getWidthInBlocks())- 1; 
+	chessBoard.construct();
+	//var strtCoord= 'C2'; //Uncomment this to use solution provided
+	var strtCoord= String.fromCharCode( 65+ Math.random()* chessBoard.getWidthInBlocks() )+
+	String( parseInt(Math.random()* chessBoard.getHeightInBlocks()) );
+	
+	var knight= new Knight( strtCoord, chessBoard.board );
+  </script>
+ </head>
+ <body>
+  <div id="menu">
+   <h1>Knight's Tour</h1>
+  </div>
+  <div id="wrapper">
+   <div id="content">
+    <div id="board">
+     <script type="text/javascript">
+	chessBoard.draw("board");
+	//Draw knight at initial position
+	knight.draw();
+	document.addEventListener( 'click', function(e) {
+		e= e || window.event;
+		var target= e.target || e.srcElement;
+		if( String(target.id).length == 2 )
+		{
+			if( knight.isLegalMove( target.id ) )
+			{
+				knight.to( target.id );
+				knight.draw();
+				blocksLeft--;
+			}
+			if( blocksLeft == 0 )
+				window.alert("You Win!!");
+		}
+	}, false);
+     </script>
+    </div><!--end #board-->
+   </div><!--end #content-->
+  </div><!--end #wrapper-->
+
+  <div id="footer">
+   <div id="inst-wrapper">
+    <div id="instructions">
+     <h2>How to play</h2>
+     <ul>
+      <li>
+      <div class="highlight">1.</div>
+      <p> 
+       Move the knight in accordance to chess rules. 
+      </p>
+     </li>
+      <li>
+      <div class="highlight">2.</div>
+      <p>
+       Land on every block once and only once. 
+      </p>
+     </li>
+      <li>
+      <div class="highlight">3.</div>
+      <p>
+       Win. Or refresh the page and try again.
+      </p>
+     </li>
+     </ul>
+    </div><!--end #instructions-->
+   </div><!--end #inst-wrapper-->
+  </div><!--end #footer--> 
+ </body>
+</html>
